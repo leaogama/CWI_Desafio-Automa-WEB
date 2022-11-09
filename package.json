@@ -20,7 +20,7 @@
   },
   "homepage": "https://github.com/leaogama/CWI_Desafio-Automa-WEB#readme",
   "dependencies": {
-    "cypress": "^10.11.0",
+    "cypress": "^11.0.0",
     "cypress-localstorage-commands": "^2.2.1",
     "faker": "^5.5.3"
   }

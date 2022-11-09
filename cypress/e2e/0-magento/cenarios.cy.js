@@ -2,13 +2,13 @@
 
 import "cypress-localstorage-commands"
 
-import HomePage from '../../pages/home-paje';
+import HomePage from "./pages/home-page"
 const homePage = new HomePage()
-import NewAddress from '../../pages/new-address';
+import NewAddress from "./pages/new-address"
 const newAddress = new NewAddress()
-import MyAccount from '../../pages/my-account';
+import MyAccount from "./pages/my-account"
 const myAccount = new MyAccount()
-import LoginPage from "../../pages/login-page";
+import LoginPage from "./pages/login-page"
 const loginPage = new LoginPage
 
 // FAKER GERA DADOS FAKE

@@ -1,4 +1,4 @@
-/// <reference types="cypress" />
+//// <reference types="cypress" />
 export class NewAddress {
 
    // url = 'https://magento.softwaretestingboard.com'

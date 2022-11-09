@@ -1,7 +1,7 @@
-/// <reference types="cypress" />
+//// <reference types="cypress" />
 export class MyAccount {
 
-    urlMyAccount = 'customer/account'
+    //urlMyAccount = 'customer/account'
 
     acessar() {
         //cy.visit(this.urlMyAccount)

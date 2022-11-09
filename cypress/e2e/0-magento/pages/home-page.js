@@ -1,9 +1,9 @@
-/// <reference types="cypress" />
+//// <reference types="cypress" />
 export class HomePage {
 
     // URL PADRAO FOI CADASTRADA EM CYPRESS.CONFIG.JS    
-     url = 'https://magento.softwaretestingboard.com'
-    urlCriarUmUsuario = "customer/account/create/"
+    // url = 'https://magento.softwaretestingboard.com'
+  //  urlCriarUmUsuario = "customer/account/create/"
 
     acessar() {
         cy.visit('')
