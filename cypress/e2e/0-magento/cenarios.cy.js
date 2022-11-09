@@ -34,11 +34,12 @@ const zip = '90050-330'
 describe('DESAFIO CWI', () => {
 
   beforeEach(() => {
-    cy.viewport(1280, 1280)
+    //cy.viewport(1280, 1280)
     cy.restoreLocalStorage();
   });
   afterEach(() => {
     cy.saveLocalStorage();
+
   });
 
 

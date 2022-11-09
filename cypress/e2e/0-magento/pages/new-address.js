@@ -17,11 +17,11 @@ export class NewAddress {
         
        
         // ENDEREÇO
+        cy.get('#country').select(country);
         cy.get('#telephone').type(telephone);
         cy.get('#street_1').type(street_1);
         cy.get('#street_2').type(street_2);
         cy.get('#city').type(city);
-        cy.get('#country').select(country);
         cy.get('#region_id').select(region_id);
         cy.get('#zip').type(zip);
         cy.get('#form-validate button.action.save.primary').click()

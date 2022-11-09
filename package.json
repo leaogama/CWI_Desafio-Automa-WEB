@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "cyo": "npx cypress open --e2e --browser chrome ",
-    "cyr": "npx cypress run --e2e --spec 'cypress/e2e/0-magento/cenarios.cy.js'"
+    "cyo": "npx cypress open --e2e --browser chrome --config viewportWidth=1000,viewportHeight=1280",
+    "cyr": "npx cypress run --e2e --config viewportWidth=1280,viewportHeight=1000 --spec 'cypress/e2e/0-magento/cenarios.cy.js'"
   },
   "repository": {
     "type": "git",
