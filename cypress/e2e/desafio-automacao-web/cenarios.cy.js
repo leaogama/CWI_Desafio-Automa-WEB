@@ -1,66 +1,71 @@
-/// <reference types="cypress" />
+//Ativar TypeScript Cypress
+/// <reference types="cypress" />  
 
-//import "cypress-localstorage-commands" // 
+//IMPORTS
+import { faker } from '@faker-js/faker';
+import HomePage from "./pages/home-page";
+import CreateAccountPage from "./pages/create-account-page";
+import EditAddressPage from "./pages/edit-address-page";
+import MyAccountPage from "./pages/my-account-page";
 
-import HomePage from "./pages/home-page"
-const homePage = new HomePage()
-import CreateAccountPage from "./pages/create-account-page"
-const createAccountPage = new CreateAccountPage()
+const homePage = new HomePage();
+const createAccountPage = new CreateAccountPage();
+const editAddressPage = new EditAddressPage();
+const myAccountPage = new MyAccountPage();
 
-import NewAddress from "./pages/new-address-page"
-const newAddress = new NewAddress()
-import MyAccount from "./pages/my-account-page"
-const myAccount = new MyAccount()
-import LoginPage from "./pages/login-page"
-const loginPage = new LoginPage()
-
-// FAKER GERA DADOS FAKE
-const faker = require('faker');
+// GERANDO UMA CONTA FALSA (RANDOMICA) com a lib. faker. link:https://github.com/faker-js/faker
 faker.locale = 'pt_BR';
-const primeiroNome = faker.name.firstName();
+const primeiroNome = faker.name.firstName()
 const ultimoNome = faker.name.lastName();
-const nome = primeiroNome + ' ' + ultimoNome;
-const email = faker.internet.email(nome);
-const senha = 'Aa!1Qq@2az'
-// ENDERECO COM DADOS "PADRAO" 
-// Com o usuário cadastrado, adicionar um endereço padrão via 'Default Billing Address'
-const telephone = '+5551999888777'
-const street_1 = 'Rua Barão do Gravataí, 700'
-const street_2 = 'Bairro Menino Deus'
-const city = 'Porto Alegre'
+const email = faker.internet.email(primeiroNome, ultimoNome) + faker.internet.password(8, /[1-9]/);
+const senha = 'Aa!1Qq@2az' + faker.internet.password(4)
+
+// GERANDO ENDEREÇO FALSO COM DADOS "PADRAO" Regra: "Com o usuário cadastrado, adicionar um endereço padrão via 'Default Billing Address'"
 const country = 'Brazil'
-const region_id = 'Rio Grande do Sul'
-const zip = '90050-330'
+const region_id = faker.address.state()
+const city = faker.address.cityName('BR')
+const street_1 = "Rua " + faker.address.street() + ', ' + faker.random.numeric(4)
+const street_2 = "Apt. " + faker.random.numeric(2)
+const telephone = faker.phone.number('+55 ## 9########')
+const zip = faker.address.zipCode()
 
-
+// CENÁRIO DE TESTE: Cadastro de usuário com endereço de cobrança.
 describe('DESAFIO CWI', () => {
-  
-  
-  it('Acessar a página inicial da loja e cadastrar um usuário e endereço padrão de cobrança e exibir tela "My Account".', () => {
 
+  /* CASO DE TESTE: Acessar a página inicial da loja
+      Realizar o cadastro do usuário atráves do link 'Create an Account'
+      Com o usuário cadastrado, adicionar um endereço padrão via 'Default Billing Address'
+      Finalizar na tela de 'My Account' */
+
+  it('Acessar a página inicial da loja e cadastrar um usuário e endereço padrão de cobrança e exibir tela "My Account".', () => {
+    // Define resolução de tela.
+    cy.viewport(1280, 1200)
     // REGRA : Acessar a página inicial da loja
     homePage.acessar()
-    cy.viewport(1280, 1200)
     // REGRA : Realizar o cadastro do usuário atráves do link 'Create an Account'
-    homePage.irPaginaCriarUmaConta()
-    createAccountPage.criarNovaConta(primeiroNome, ultimoNome, email, senha)
+    homePage.botaoCriarUmaConta()
+    createAccountPage.cadastrarNovaConta(
+      primeiroNome,
+      ultimoNome,
+      email,
+      senha)
 
     // homePage.criarUmUsuario(primeiroNome, ultimoNome, email, senha)
-    // // REGRA: Com o usuário cadastrado, adicionar um endereço padrão via 'Default Billing Address'
-    // cy.get('.box-billing-address > .box-actions > .action > span').click();
-    //   newAddress.deCobranca(
-    //   telephone,
-    //   street_1,
-    //   street_2,
-    //   city,
-    //   country,
-    //   region_id,
-    //   zip
-    // )
-    // // REGRA : Finalizar na tela de 'My Account'
-    // myAccount.acessar()
-    // //loginPage.logar(email, senha)
-    
+    // REGRA: Com o usuário cadastrado, adicionar um endereço padrão via 'Default Billing Address'
+    myAccountPage.botaoEditEndCobrancaPadrao()
+    editAddressPage.cadastrarEndDeCobranca(
+      telephone,
+      street_1,
+      street_2,
+      city,
+      country,
+      region_id,
+      zip
+    )
+    // REGRA : Finalizar na tela de 'My Account'
+    myAccountPage.acessar()
+    //loginPage.logar(email, senha)
+
   })
 })
 

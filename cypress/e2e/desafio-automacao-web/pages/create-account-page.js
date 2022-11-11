@@ -9,7 +9,7 @@ export class CreateAccountPage {
         cy.visit('')
     }
 
-    criarNovaConta(primeiroNome, ultimoNome, email, senha) {
+    cadastrarNovaConta(primeiroNome, ultimoNome, email, senha) {
        // cy.url().should('be.equal',`${Cypress.config("baseUrl")}`)
        // cy.get('.panel > .header > :nth-child(3) > a').should('have.text', 'Create an Account').click();
        // cy.contais('.base', 'Create New Customer Account')
