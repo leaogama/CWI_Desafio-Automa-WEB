@@ -1,15 +1,18 @@
 /// <reference types="cypress" />
 
-import "cypress-localstorage-commands" // 
+//import "cypress-localstorage-commands" // 
 
 import HomePage from "./pages/home-page"
 const homePage = new HomePage()
-import NewAddress from "./pages/new-address"
+import CreateAccountPage from "./pages/create-account-page"
+const createAccountPage = new CreateAccountPage()
+
+import NewAddress from "./pages/new-address-page"
 const newAddress = new NewAddress()
-import MyAccount from "./pages/my-account"
+import MyAccount from "./pages/my-account-page"
 const myAccount = new MyAccount()
 import LoginPage from "./pages/login-page"
-const loginPage = new LoginPage
+const loginPage = new LoginPage()
 
 // FAKER GERA DADOS FAKE
 const faker = require('faker');
@@ -31,50 +34,34 @@ const zip = '90050-330'
 
 
 describe('DESAFIO CWI', () => {
+  
+  
+  it('Acessar a página inicial da loja e cadastrar um usuário e endereço padrão de cobrança e exibir tela "My Account".', () => {
 
-  beforeEach(() => {
-    //cy.viewport(1280, 1280)
-    cy.restoreLocalStorage();
-  });
-  afterEach(() => {
-    cy.saveLocalStorage();
-  });
-
-
-  it('Acessar a página inicial da loja.', () => {
     // REGRA : Acessar a página inicial da loja
     homePage.acessar()
-  })
-
-
-  it('Cadastrar um usuário.', () => {
+    cy.viewport(1280, 1200)
     // REGRA : Realizar o cadastro do usuário atráves do link 'Create an Account'
-    homePage.acessar()
-    homePage.criarUmUsuario(primeiroNome, ultimoNome, email, senha)
-    });
+    homePage.irPaginaCriarUmaConta()
+    createAccountPage.criarNovaConta(primeiroNome, ultimoNome, email, senha)
 
-
-  it('Cadastrar endereço de cobrança.', () => {
-    // REGRA: Com o usuário cadastrado, adicionar um endereço padrão via 'Default Billing Address'
-    cy.get('.box-billing-address > .box-actions > .action > span').click();
-    loginPage.logar(email, senha)
-    newAddress.deCobranca(
-      telephone,
-      street_1,
-      street_2,
-      city,
-      country,
-      region_id,
-      zip
-    )
+    // homePage.criarUmUsuario(primeiroNome, ultimoNome, email, senha)
+    // // REGRA: Com o usuário cadastrado, adicionar um endereço padrão via 'Default Billing Address'
+    // cy.get('.box-billing-address > .box-actions > .action > span').click();
+    //   newAddress.deCobranca(
+    //   telephone,
+    //   street_1,
+    //   street_2,
+    //   city,
+    //   country,
+    //   region_id,
+    //   zip
+    // )
+    // // REGRA : Finalizar na tela de 'My Account'
+    // myAccount.acessar()
+    // //loginPage.logar(email, senha)
+    
   })
-
-  it('Exibir tela de "My Account".', () => {
-    // REGRA : Finalizar na tela de 'My Account'
-    myAccount.acessar()
-    loginPage.logar(email, senha)
-    cy.viewport(1280, 1280)
-  });
 })
 
 
