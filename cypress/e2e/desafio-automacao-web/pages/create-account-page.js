@@ -3,7 +3,7 @@ export class CreateAccountPage {
 
     // URL PADRAO FOI CADASTRADA EM CYPRESS.CONFIG.JS    
     // url = 'https://magento.softwaretestingboard.com'
-  //  urlCriarUmUsuario = "customer/account/create/"
+  //urlCriarUmUsuario = "customer/account/create/"
 
     acessar() {
         cy.visit('')

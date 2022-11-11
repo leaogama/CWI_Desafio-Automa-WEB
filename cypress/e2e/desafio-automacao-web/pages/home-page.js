@@ -1,18 +1,16 @@
 //// <reference types="cypress" />
-export class HomePage {
-
+class HomePage {
     // URL PADRAO FOI CADASTRADA EM CYPRESS.CONFIG.JS    
     // baseUrl : 'https://magento.softwaretestingboard.com/'
-     urlCriarUmaConta = "customer/account/create/"
-
-    acessar() {
+  criarUmaConta = 'customer/account/create/'
+    acessar () {
         cy.visit('')
     }
 
-    botaoCriarUmaConta() {
+    botaoCriarUmaConta () {
         cy.url().should('be.equal', `${Cypress.config("baseUrl")}`)
         cy.contains('.header a', 'Create an Account').should('be.visible').click();
-        cy.url().should('include', urlCriarUmaConta)
+        cy.url().should('include', criarUmaConta)
     }
 }
-export default HomePage
+export default new HomePage()
