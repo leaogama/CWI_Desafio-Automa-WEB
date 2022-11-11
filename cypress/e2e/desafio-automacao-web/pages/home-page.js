@@ -1,16 +1,23 @@
-//// <reference types="cypress" />
+//Ativar TypeScript Cypress
+/// <reference types="cypress" />
+
 class HomePage {
+
     // URL PADRAO FOI CADASTRADA EM CYPRESS.CONFIG.JS    
     // baseUrl : 'https://magento.softwaretestingboard.com/'
-  criarUmaConta = 'customer/account/create/'
-    acessar () {
+
+    urlCriarUmaConta = 'customer/account/create/'
+    selectBtnCriarUmaConta = '.header a'
+    textoBtnCriarUmaConta = 'Create an Account'
+
+    acessar() {
         cy.visit('')
     }
 
-    botaoCriarUmaConta () {
+    clickBtnCriarUmaConta() {
         cy.url().should('be.equal', `${Cypress.config("baseUrl")}`)
-        cy.contains('.header a', 'Create an Account').should('be.visible').click();
-        cy.url().should('include', criarUmaConta)
+        cy.contains(this.selectBtnCriarUmaConta, this.textoBtnCriarUmaConta).should('be.visible').click();
+        cy.url().should('include', this.urlCriarUmaConta)
     }
 }
-export default new HomePage()
+export default HomePage

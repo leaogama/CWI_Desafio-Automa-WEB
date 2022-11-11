@@ -1,25 +1,30 @@
-//// <reference types="cypress" />
-export class CreateAccountPage {
+//Ativar TypeScript Cypress
+/// <reference types="cypress" />
+
+class CreateAccountPage {
 
     // URL PADRAO FOI CADASTRADA EM CYPRESS.CONFIG.JS    
-    // url = 'https://magento.softwaretestingboard.com'
-  //urlCriarUmUsuario = "customer/account/create/"
+    // baseUrl : 'https://magento.softwaretestingboard.com/'
 
-    acessar() {
-        cy.visit('')
-    }
+    inputFirstName = '#firstname'
+    inputLastNdne = '#lastname'
+    inputEmail = '#email_address'
+    inputPassword = '#password'
+    inputPasswordConfirmation = '#password-confirmation'
+    btnCreateAccount = '#form-validate > .actions-toolbar > div.primary > .action > span'
+    selectSucessoCadastrarNovaConta = '.message-success'
+    textoSucessoCadastrarNovaConta = 'Thank you for registering with Fake Online Clothing Store.'
 
     cadastrarNovaConta(primeiroNome, ultimoNome, email, senha) {
-       // cy.url().should('be.equal',`${Cypress.config("baseUrl")}`)
-       // cy.get('.panel > .header > :nth-child(3) > a').should('have.text', 'Create an Account').click();
-       // cy.contais('.base', 'Create New Customer Account')
-        cy.get('#firstname').type(primeiroNome);
-        cy.get('#lastname').type(ultimoNome);
-        cy.get('#email_address').type(email);
-        cy.get('#password').type(senha);
-        cy.get('#password-confirmation').type(senha);
-        cy.get('#form-validate > .actions-toolbar > div.primary > .action > span').click();
-        cy.get('.message-success').should('contain.text', 'Thank you for registering with Fake Online Clothing Store.');
+
+
+        cy.get(this.inputFirstName).type(primeiroNome);
+        cy.get(this.inputLastNdne).type(ultimoNome);
+        cy.get(this.inputEmail).type(email);
+        cy.get(this.inputPassword).type(senha);
+        cy.get(this.inputPasswordConfirmation).type(senha);
+        cy.get(this.btnCreateAccount).click();
+        cy.get(this.selectSucessoCadastrarNovaConta).should('contain.text', this.textoSucessoCadastrarNovaConta);
     }
 }
 export default CreateAccountPage

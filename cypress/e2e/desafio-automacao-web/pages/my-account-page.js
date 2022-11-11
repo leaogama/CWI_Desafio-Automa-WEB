@@ -1,14 +1,22 @@
-//// <reference types="cypress" />
-export class MyAccount {
+//Ativar TypeScript Cypress
+/// <reference types="cypress" />
 
-    //urlMyAccount = 'customer/account'
+class MyAccount {
 
-    acessar() {
-        //cy.visit(this.urlMyAccount)
-        cy.get('.items > :nth-child(1) > a').should('be.visible').should('have.text', 'My Account').click()
+    // URL PADRAO FOI CADASTRADA EM CYPRESS.CONFIG.JS    
+    // baseUrl : 'https://magento.softwaretestingboard.com/'
+
+    urlMyAccount = 'customer/account'
+    selectBtnEditEndCobrancaPad = '.box-billing-address span'
+    textoBtnEditEndCobrancaPad = 'Edit Address'
+
+    acessarUrlMyAccount() {
+        cy.visit(this.urlMyAccount)
+
     }
-    botaoEditEndCobrancaPadrao(){
-        cy.contains('.box-billing-address span','Edit Address').should('be.visible').click()
+
+    clickBtnEditEndCobrancaPadrao() {
+        cy.contains(this.selectBtnEditEndCobrancaPad, this.textoBtnEditEndCobrancaPad).should('be.visible').click()
     }
 }
 export default MyAccount
